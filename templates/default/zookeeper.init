@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# chkconfig: 345 19 81
+# description: zookeeper
+#
+# Get function from functions library
+
+. /etc/init.d/functions
+export JAVA_HOME=<%= node["java"]["java_home"] %>
+export ZOO_LOG_DIR=/opt/zookeeper-<%= node["zookeeper"]["version"] %>/log 
+
+start() {
+         daemon --user zookeeper /opt/zookeeper-<%= node["zookeeper"]["version"] %>/bin/zkServer.sh start
+         retval=$?
+         echo
+         [ $retval -eq 0 ] && touch /var/lock/subsys/zookeeper
+	 sleep 4
+         return $retval
+}
+stop() {
+         /opt/zookeeper-<%= node["zookeeper"]["version"] %>/bin/zkServer.sh stop
+         retval=$?
+         echo
+         [ $retval -eq 0 ] && rm -rf /var/lock/subsys/zookeeper
+         return $retval
+}
+status() {
+        ps auwwx | grep zookeeper | grep -v grep
+        retval=$?
+	echo
+	return $retval
+}
+
+### main logic ###
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        status 
+        ;;
+  restart|reload|condrestart)
+        stop
+	sleep 5
+        start
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+exit 0
+
