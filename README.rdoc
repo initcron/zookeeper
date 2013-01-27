@@ -6,11 +6,12 @@ Installs and configures Zookeeper.
 
 == Platform:
 
-Tested on Ubuntu 9.10 on EC2 only.  YMMV on other platforms.
+-  Ubuntu/Debian
+-  CentOS/RHEL/Scientific Linux
 
 ==Cookbooks:
 
-Requres Opscode's runit and java cookbooks.  
+Requres Opscode's runit(For ubuntu/debian) and java cookbooks.  
 
 = ATTRIBUTES:
 
@@ -55,8 +56,9 @@ servers were always sorted last in the list, but I'm not sure how to do that.
 = LICENSE and AUTHOR:
 
 Author:: Grant Rodgers (<grant@gotime.com>)
-
+Author:: Gourav Shah (<gs@initcron.org>)
 Copyright:: 2010, GoTime Inc.
+Copyright:: 2012, Initcron
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
