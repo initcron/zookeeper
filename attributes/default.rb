@@ -1,4 +1,4 @@
-include_attribute "hadoop"
+#include_attribute "hadoop"
 
 set_unless[:zookeeper][:cluster_name] = "zookeeper"
 

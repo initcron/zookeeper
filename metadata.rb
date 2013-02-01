@@ -13,4 +13,4 @@ end
 
 depends "java"
 depends "runit"
-depends "hadoop"
+#depends "hadoop"
